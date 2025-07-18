@@ -27,11 +27,10 @@ jobs:
         run: npm install
 
       - name: Setup .env file
-        run: |
-          echo "PORT=5000" >> .env
-          echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env
-          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
-          echo "JWT_TEST_TOKEN=${{ secrets.JWT_TEST_TOKEN }}" >> .env
+       env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          JWT_TEST_TOKEN: ${{ secrets.JWT_TEST_TOKEN }}
 
       - name: Run Tests
         run: npm test
